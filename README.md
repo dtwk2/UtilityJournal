@@ -1,4 +1,4 @@
-<h1><img src="Images/calendar.ico" width="30" height="30"/>&nbsp;&nbsp;Utility Journal</h1>
+<h1><img src="Images/calendar.png" width="30" height="30"/>&nbsp;&nbsp;Utility Journal</h1>
 
-<img src="/Images/index.png"/>
+<img src="/Images/Screenshot.png"/>
 
