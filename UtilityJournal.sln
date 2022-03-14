@@ -5,11 +5,16 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UtilityJournal.Setup", "UtilityJournal.Setup\UtilityJournal.Setup.vdproj", "{4CBC7EDD-0AD7-46A4-908B-9F08807B1E84}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility.WPF.Controls.Date", "UtilityJournal.Controls\UtilityJournal.Controls.csproj", "{2954B0F1-5056-4AAB-97A4-FA4CAFE2A04B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityJournal.Controls", "UtilityJournal.Controls\UtilityJournal.Controls.csproj", "{2954B0F1-5056-4AAB-97A4-FA4CAFE2A04B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityJournal.Shell", "UtilityJournal.Shell\UtilityJournal.Shell.csproj", "{DE3A86F8-C678-4AD6-A4A4-F83B1957324D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{3652EF9F-93B9-4132-B5F3-89DC30496CBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4DFEA494-E8CC-43CD-9407-32F8A3B0CB9C}"
+	ProjectSection(SolutionItems) = preProject
+		Release\DateWork.Setup.msi = Release\DateWork.Setup.msi
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
