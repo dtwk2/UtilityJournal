@@ -26,6 +26,7 @@
         <local:NotesConverter x:Key="ValueConverter" />
         <local:NoteConverter x:Key="Value2Converter" />
         <helper:DefaultConverter x:Key="DefaultConverter" />
+        <local:CountToBooleanConverter x:Key="CountToBooleanConverter" />
     </FrameworkElement.Resources>
 
     <DockPanel>
@@ -73,6 +74,9 @@
                                     DisplayMemberPath="RevisionDateTime"
                                     DockPanel.Dock="Top"
                                     FontSize="16"
+                                    IsEnabled="{Binding Notes.Count,
+                                    ConverterParameter=1,
+                                    Converter={StaticResource CountToBooleanConverter}}"
                                     ItemsSource="{Binding Notes}"
                                     SelectedIndex="{Binding SelectedIndex}" />
 
@@ -92,25 +96,27 @@
                                     <TextBlock Margin="4" Text="Revision Date" />
                                     <TextBlock Margin="4" Text="{Binding RevisionDateTime}" />
                                 </WrapPanel>
-                                <Border Background="Transparent" BorderThickness="1">
-                                    <TextBox TextWrapping="Wrap"
+
+                                <TextBox TextWrapping="Wrap"
                                              AcceptsReturn="True"
                                         MinWidth="20"
                                         MinHeight="20"
                                         Background="Transparent"
                                         FontSize="18"
                                         Text="{Binding Text, TargetNullValue='Text Here'}" />
-                                </Border>
+
                             </DockPanel>
                         </DataTemplate>
                     </FrameworkElement.Resources>
                     <Grid>
-                        <TextBlock
+                        <Viewbox>
+
+                            <TextBlock Margin="10"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="140"
+                            VerticalAlignment="Center"                         
                             Opacity="0.04"
                             Text="{Binding ElementName=CalendarControl, Path=SelectedItem, StringFormat='{}{0:MM/dd/yyyy}'}" />
+                        </Viewbox>
                         <ContentControl
                             Grid.Row="1"
                             Background="Transparent"
