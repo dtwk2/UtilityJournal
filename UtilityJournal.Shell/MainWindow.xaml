@@ -1,0 +1,123 @@
+﻿<Window
+    x:Class="UtilityJournal.Shell.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:date="clr-namespace:UtilityJournal.Controls;assembly=UtilityJournal.Controls"
+    xmlns:helper="clr-namespace:UtilityJournal.Controls.Helper;assembly=UtilityJournal.Controls"
+    xmlns:infra="clr-namespace:UtilityJournal.Shell.Infrastructure"
+    xmlns:local="clr-namespace:UtilityJournal.Shell"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:DateWork.Models"
+    Title="Utility Journal"
+    Width="800"
+    Height="850"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    mc:Ignorable="d">
+
+    <FrameworkElement.Resources>
+        <local:NotesConverter x:Key="ValueConverter" />
+        <local:NoteConverter x:Key="Value2Converter" />
+        <helper:DefaultConverter x:Key="DefaultConverter" />
+    </FrameworkElement.Resources>
+
+    <DockPanel>
+        <materialDesign:ColorZone
+            Margin="10"
+            Padding="16"
+            materialDesign:ShadowAssist.ShadowDepth="Depth3"
+            CornerRadius="3"
+            DockPanel.Dock="Top"
+            Mode="PrimaryMid">
+
+            <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" TextAlignment="Center">
+                Utility Journal
+            </TextBlock>
+        </materialDesign:ColorZone>
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <date:CalendarControl x:Name="CalendarControl" ValueConverter="{StaticResource Value2Converter}" />
+
+            <Grid Grid.Column="1" DockPanel.Dock="Right">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Border
+                    Grid.Row="1"
+                    BorderBrush="{DynamicResource SecondaryHueMidBrush}"
+                    BorderThickness="1">
+                    <FrameworkElement.Resources>
+                        <infra:NoteDateConverter x:Key="NoteDateConverter" />
+                        <DataTemplate DataType="{x:Type local:DayNotesViewModel}">
+                            <DockPanel>
+                                <ComboBox
+                                    Height="40"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Background="Transparent"
+                                    DisplayMemberPath="RevisionDateTime"
+                                    DockPanel.Dock="Top"
+                                    FontSize="16"
+                                    ItemsSource="{Binding Notes}"
+                                    SelectedIndex="{Binding SelectedIndex}" />
+
+                                <ContentControl Content="{Binding SelectedNote}" />
+                            </DockPanel>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type models:Note}">
+                            <DockPanel Background="Transparent">
+                                <WrapPanel
+                                    Background="Transparent"
+                                    DockPanel.Dock="Top"
+                                    Opacity="0.4"
+                                    Orientation="Horizontal">
+                                    <TextBlock Margin="4" Text="Date" />
+                                    <TextBlock Margin="4" Text="{Binding DateTime}" />
+                                    <Rectangle Margin="10,0,10,0" />
+                                    <TextBlock Margin="4" Text="Revision Date" />
+                                    <TextBlock Margin="4" Text="{Binding RevisionDateTime}" />
+                                </WrapPanel>
+                                <Border Background="Transparent" BorderThickness="1">
+                                    <TextBox TextWrapping="Wrap"
+                                             AcceptsReturn="True"
+                                        MinWidth="20"
+                                        MinHeight="20"
+                                        Background="Transparent"
+                                        FontSize="18"
+                                        Text="{Binding Text, TargetNullValue='Text Here'}" />
+                                </Border>
+                            </DockPanel>
+                        </DataTemplate>
+                    </FrameworkElement.Resources>
+                    <Grid>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="140"
+                            Opacity="0.04"
+                            Text="{Binding ElementName=CalendarControl, Path=SelectedItem, StringFormat='{}{0:MM/dd/yyyy}'}" />
+                        <ContentControl
+                            Grid.Row="1"
+                            Background="Transparent"
+                            Content="{Binding ElementName=CalendarControl, Path=SelectedItem, Converter={StaticResource ValueConverter}}" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>
