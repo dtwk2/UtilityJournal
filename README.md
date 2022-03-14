@@ -2,9 +2,8 @@
 
 Calendar based record keeping app for journal-type information
 
-## Libraries
-- ReactiveUI
-- MaterialDesign
-
 <img src="/Images/Screenshot.png"/>
 
+### Libraries
+- ReactiveUI
+- MaterialDesign
